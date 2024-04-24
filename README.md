@@ -15,7 +15,7 @@ All other options:
 var
 svgNode = DATAMatrix({
 
-     msg :  "Your message here"
+     msg :  "<FNC1>010465007519016621120508<GS>93ABCD<GS>3103002250"
     ,dim :   256
     ,rct :   0
     ,pad :   2
