@@ -23,12 +23,20 @@ function DATAMatrix(Q) {
 		, toAscii = function (t) {
 			var gsCodes = {
 				FNC1: 232,
-				GS: 29
+				GS: 30
 			};
-			var matchAll = Array.from(t.matchAll(/<(FNC1|GS)>/g));
-			var mathIdx = [];
-			for (var m in matchAll) {
-				mathIdx.push(matchAll[m].index);
+
+			var ma = []
+
+			let match
+				, regexp = /<(FNC1|GS)>/g
+			while (( match = regexp.exec(t)) !== null) {
+				ma.push(Object.assign(match));
+			}
+
+			var matchIdx = [];
+			for (var m in ma) {
+				matchIdx.push(ma[m].index);
 			}
 
 			var
@@ -37,10 +45,10 @@ function DATAMatrix(Q) {
 
 			for (var i = 0; i < l; i++) {
 
-				var mIdx = mathIdx.indexOf(i);
+				var mIdx = matchIdx.indexOf(i);
 
 				if (mIdx >= 0) {
-					var m = matchAll[mIdx][1];
+					var m = ma[mIdx][1];
 					if (gsCodes.hasOwnProperty(m)) {
 						r.push(gsCodes[m]);
 						i = i + m.length + 1;
